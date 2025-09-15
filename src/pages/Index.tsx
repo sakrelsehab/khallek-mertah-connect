@@ -4,9 +4,11 @@ import { ServiceCard } from "@/components/ServiceCard";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Truck, Home, Users, Star, ArrowLeft, Phone, Mail, MapPin } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
 
 const Index = () => {
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   const stats = [
     { number: "10,000+", label: "مستخدم نشط" },
@@ -39,10 +41,22 @@ const Index = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 animate-fade-in">
-              <Button variant="hero" size="lg" className="shadow-glow">
-                <Users className="ml-2" size={20} />
-                ابدأ الآن مجاناً
-              </Button>
+              {user ? (
+                <Button variant="hero" size="lg" className="shadow-glow">
+                  <Users className="ml-2" size={20} />
+                  أهلاً بك، {user.user_metadata?.full_name || user.email}
+                </Button>
+              ) : (
+                <Button 
+                  variant="hero" 
+                  size="lg" 
+                  className="shadow-glow"
+                  onClick={() => navigate('/auth')}
+                >
+                  <Users className="ml-2" size={20} />
+                  تسجيل الدخول
+                </Button>
+              )}
               <Button variant="outline" size="lg">
                 <Phone className="ml-2" size={20} />
                 تواصل معنا
