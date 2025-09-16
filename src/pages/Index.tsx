@@ -42,9 +42,14 @@ const Index = () => {
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 animate-fade-in">
               {user ? (
-                <Button variant="hero" size="lg" className="shadow-glow">
+                <Button 
+                  variant="hero" 
+                  size="lg" 
+                  className="shadow-glow"
+                  onClick={() => navigate('/dashboard')}
+                >
                   <Users className="ml-2" size={20} />
-                  أهلاً بك، {user.user_metadata?.full_name || user.email}
+                  لوحة التحكم
                 </Button>
               ) : (
                 <Button 
