@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
+import { formatPrice } from '@/lib/utils';
 import { 
   Utensils, 
   Pill, 
@@ -115,12 +116,6 @@ const DeliveryServiceReal = () => {
     return matchesSearch && matchesCategory;
   });
 
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('ar-SA', {
-      style: 'currency',
-      currency: 'SAR'
-    }).format(price);
-  };
 
   if (loading) {
     return (

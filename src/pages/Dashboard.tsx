@@ -8,6 +8,7 @@ import { Badge } from '@/components/ui/badge';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
+import { formatPrice } from '@/lib/utils';
 import {
   Store,
   Home,
@@ -120,12 +121,6 @@ const Dashboard = () => {
     }
   };
 
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('ar-SA', {
-      style: 'currency',
-      currency: 'SAR'
-    }).format(price);
-  };
 
   if (loading) {
     return (
@@ -216,7 +211,12 @@ const Dashboard = () => {
           <TabsContent value="stores" className="space-y-6">
             <div className="flex justify-between items-center">
               <h2 className="text-xl font-bold">متاجري</h2>
-              <Button onClick={() => navigate('/dashboard/add-store')}>
+              <Button onClick={() => {
+                toast({
+                  title: "قريباً",
+                  description: "ميزة إضافة المتاجر ستكون متاحة قريباً",
+                });
+              }}>
                 <Plus className="ml-2 h-4 w-4" />
                 إضافة متجر
               </Button>
@@ -280,7 +280,12 @@ const Dashboard = () => {
                 <p className="text-muted-foreground mb-4">
                   ابدأ بإضافة أول متجر لك
                 </p>
-                <Button onClick={() => navigate('/dashboard/add-store')}>
+                <Button onClick={() => {
+                  toast({
+                    title: "قريباً",
+                    description: "ميزة إضافة المتاجر ستكون متاحة قريباً",
+                  });
+                }}>
                   <Plus className="ml-2 h-4 w-4" />
                   إضافة متجر جديد
                 </Button>
@@ -292,7 +297,12 @@ const Dashboard = () => {
           <TabsContent value="properties" className="space-y-6">
             <div className="flex justify-between items-center">
               <h2 className="text-xl font-bold">عقاراتي</h2>
-              <Button onClick={() => navigate('/dashboard/add-property')}>
+              <Button onClick={() => {
+                toast({
+                  title: "قريباً",
+                  description: "ميزة إضافة العقارات ستكون متاحة قريباً",
+                });
+              }}>
                 <Plus className="ml-2 h-4 w-4" />
                 إضافة عقار
               </Button>
@@ -358,7 +368,12 @@ const Dashboard = () => {
                 <p className="text-muted-foreground mb-4">
                   ابدأ بإضافة أول عقار لك
                 </p>
-                <Button onClick={() => navigate('/dashboard/add-property')}>
+                <Button onClick={() => {
+                  toast({
+                    title: "قريباً",
+                    description: "ميزة إضافة العقارات ستكون متاحة قريباً",
+                  });
+                }}>
                   <Plus className="ml-2 h-4 w-4" />
                   إضافة عقار جديد
                 </Button>
@@ -370,7 +385,12 @@ const Dashboard = () => {
           <TabsContent value="vehicles" className="space-y-6">
             <div className="flex justify-between items-center">
               <h2 className="text-xl font-bold">مركباتي</h2>
-              <Button onClick={() => navigate('/dashboard/add-vehicle')}>
+              <Button onClick={() => {
+                toast({
+                  title: "قريباً",
+                  description: "ميزة إضافة المركبات ستكون متاحة قريباً",
+                });
+              }}>
                 <Plus className="ml-2 h-4 w-4" />
                 إضافة مركبة
               </Button>
@@ -436,7 +456,12 @@ const Dashboard = () => {
                 <p className="text-muted-foreground mb-4">
                   ابدأ بإضافة أول مركبة لك
                 </p>
-                <Button onClick={() => navigate('/dashboard/add-vehicle')}>
+                <Button onClick={() => {
+                  toast({
+                    title: "قريباً",
+                    description: "ميزة إضافة المركبات ستكون متاحة قريباً",
+                  });
+                }}>
                   <Plus className="ml-2 h-4 w-4" />
                   إضافة مركبة جديدة
                 </Button>

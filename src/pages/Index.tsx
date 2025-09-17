@@ -177,9 +177,10 @@ const Index = () => {
               سجل الآن
               <ArrowLeft className="mr-2" size={20} />
             </Button>
-            <Button variant="accent" size="lg">
-              <Mail className="ml-2" size={20} />
-              تواصل معنا
+            <Button variant="accent" size="lg" asChild>
+              <a href="tel:+201044306309">
+                اتصل بنا: 01044306309
+              </a>
             </Button>
           </div>
         </div>
@@ -224,8 +225,8 @@ const Index = () => {
             <div>
               <h4 className="font-semibold mb-4">تواصل معنا</h4>
               <div className="space-y-2 text-muted-foreground">
-                <p>البريد: info@khaleekmortah.com</p>
-                <p>الهاتف: +966 50 123 4567</p>
+                <p>البريد: abdallahsakr198@gmail.com</p>
+                <p>الهاتف: 01044306309</p>
               </div>
             </div>
           </div>

@@ -55,7 +55,7 @@ export const Header = () => {
                 <DropdownMenuItem onClick={() => navigate('/dashboard')}>
                   لوحة التحكم
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => navigate('/profile')}>
+                <DropdownMenuItem onClick={() => navigate('/dashboard')}>
                   الملف الشخصي
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={handleSignOut}>
