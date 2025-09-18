@@ -382,6 +382,27 @@ export type Database = {
           },
         ]
       }
+      "User's": {
+        Row: {
+          age: number
+          created_at: string
+          Email: string
+          id: number
+        }
+        Insert: {
+          age: number
+          created_at?: string
+          Email: string
+          id?: number
+        }
+        Update: {
+          age?: number
+          created_at?: string
+          Email?: string
+          id?: number
+        }
+        Relationships: []
+      }
       vehicle_images: {
         Row: {
           created_at: string
