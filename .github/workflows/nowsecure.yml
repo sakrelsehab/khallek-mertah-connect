@@ -1,0 +1,52 @@
+يستخدم سير العمل هذا إجراءات GitHub غير المعتمدة.
+() يتم توفيرها من قبل طرف ثالث ويحكمها
+# شروط خدمة منفصلة وسياسة خصوصية ودعم
+# Documents.
+#
+# الآنآمن: خبراء أمن الهاتف المحمول <؛https://www.nowsecure.com/>.
+#
+# لاستخدام سير العمل هذا، يجب أن تكون عميلا حاليا الآن مع تمكين الأمان (GHAS) (Github) (GHAS) الخاص بك
+#مستودع.
+#
+إذا لم تكن عميلا حاليا، فانقر هنا للاتصال بنا للحصول على تفاصيل الترخيص والتسعير:
+# <https://info.nowsecure.com/github-request>.
+#
+# تعليمات:
+#
+# 1. في إعدادات مستودعك، انقر فوق "أسرار" ثم "سر (مستودع جديد"). Name secret "ns_token" and
+# Plued into your platform code. إذا لم يكن لديك منصة رمزية، أو ترغب في إنشاء رمز جديد ل GitHub، فقم بزيارة
+# الآن منصتها الآمنة وانتقل إلى "Profile &؛ preferences" ثم إنشاء رمز مميز يحمل علامة "GitHub".
+#
+# 2. اتبع سير العمل المشروح أدناه وقم بإجراء أي تعديلات ضرورية ثم حفظ سير العمل إلى مستودعك
+# and review tab "Security" once the procedure is turned on.
+
+ الاسم:"NowSecure"
+
+على:
+  Payment:
+    Branches:[ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  nowsecure:
+    name: NowSecure
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build your application
+        run: ./gradlew assembleDebug              # Update this to build your Android or iOS application
+
+      - name: Run NowSecure
+        uses: nowsecure/nowsecure-action@3b439db31b6dce857b09f5222fd13ffc3159ad26
+        with:
+          token: ${{ secrets.NS_TOKEN }}
+          app_file: app-debug.apk                 # Update this to a path to your .ipa or .apk
+          group_id: {{ groupId }}                 # Update this to your desired Platform group ID
+
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: NowSecure.sarif
