@@ -1,0 +1,33 @@
+name: Deploy to Azure
+
+on:
+  push:
+    branches:
+      - main   # غيرها لو الفرع عندك اسمه مختلف
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
+
+      - name: Build App
+        run: |
+          echo "🔨 جاري بناء التطبيق..."
+          # هنا تحط أوامر البناء (مثلاً npm install && npm run build)
+
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: اسم_التطبيق_بتاعك
+          package: .
