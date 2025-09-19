@@ -64,8 +64,6 @@ function App() {
     </Router>
   );
 }
-
-export default App;
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
