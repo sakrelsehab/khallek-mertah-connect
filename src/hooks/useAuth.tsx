@@ -1,7 +1,6 @@
-import { useState, useEffect, createContext, useContext, ReactNode } from 'react';
+import React, { useState, useEffect, createContext, useContext, ReactNode } from 'react';
 import { User, Session } from '@supabase/supabase-js';
 import { supabase } from '@/integrations/supabase/client';
-import { useToast } from '@/hooks/use-toast';
 
 interface AuthContextType {
   user: User | null;
@@ -18,7 +17,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
-  const { toast } = useToast();
 
   useEffect(() => {
     // Set up auth state listener FIRST
@@ -56,18 +54,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       });
 
       if (error) {
-        toast({
-          title: "خطأ في التسجيل",
-          description: error.message === 'User already registered' 
-            ? 'المستخدم مسجل مسبقاً' 
-            : 'حدث خطأ أثناء إنشاء الحساب',
-          variant: "destructive",
-        });
+        console.error('Sign up error:', error.message);
       } else {
-        toast({
-          title: "تم إنشاء الحساب",
-          description: "تم إنشاء حسابك بنجاح. تحقق من بريدك الإلكتروني لتأكيد الحساب.",
-        });
+        console.log('Account created successfully');
       }
 
       return { error };
@@ -85,18 +74,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       });
 
       if (error) {
-        toast({
-          title: "خطأ في تسجيل الدخول",
-          description: error.message === 'Invalid login credentials' 
-            ? 'بيانات الدخول غير صحيحة' 
-            : 'حدث خطأ أثناء تسجيل الدخول',
-          variant: "destructive",
-        });
+        console.error('Sign in error:', error.message);
       } else {
-        toast({
-          title: "مرحباً بك",
-          description: "تم تسجيل الدخول بنجاح",
-        });
+        console.log('Signed in successfully');
       }
 
       return { error };
@@ -111,16 +91,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       const { error } = await supabase.auth.signOut();
       
       if (error) {
-        toast({
-          title: "خطأ",
-          description: "حدث خطأ أثناء تسجيل الخروج",
-          variant: "destructive",
-        });
+        console.error('Sign out error:', error.message);
       } else {
-        toast({
-          title: "تم تسجيل الخروج",
-          description: "تم تسجيل الخروج بنجاح",
-        });
+        console.log('Signed out successfully');
       }
 
       return { error };
